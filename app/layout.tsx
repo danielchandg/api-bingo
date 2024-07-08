@@ -1,31 +1,33 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-// import './app.css';
+import './globals.css';
 import '@aws-amplify/ui-react/styles.css';
 import AuthProvider from '@/components/auth/AuthProvider';
 import NavBar from '@/components/NavBar';
-import outputs from '@/amplify_outputs.json';
-import { Amplify } from 'aws-amplify';
+import ConfigureAmplify from '@/components/ConfigureAmplify';
+import Providers from './providers';
 
-Amplify.configure(outputs, {ssr: true});
-
-const inter = Inter({ subsets: ["latin"] });
+/**
+ * @description Specify default font
+ * @see https://nextjs.org/learn/dashboard-app/optimizing-fonts-images#adding-a-primary-font
+ */
+export const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'API Bingo',
   description: 'Welcome to the API universe',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
+    // https://nextui.org/docs/frameworks/nextjs#add-provider-to-root
+    <html lang="en" className='dark'>
       <body className={inter.className}>
-        <NavBar isSignedIn={false} />
-        <AuthProvider>{children}</AuthProvider>
+        <Providers>
+          <ConfigureAmplify />
+          <NavBar isSignedIn={false} />
+          {children}
+        </Providers>
       </body>
     </html>
   );
