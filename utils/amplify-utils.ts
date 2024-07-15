@@ -25,7 +25,3 @@ export const cookiesClient = generateServerClientUsingCookies<Schema>({
   config: outputs,
   cookies
 });
-
-export const isAuthenticated = async () => (
-  null
-)
