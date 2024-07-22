@@ -1,25 +1,11 @@
-'use client';
 import React from 'react';
-import { Flex, Link } from '@aws-amplify/ui-react';
+import NavBar from './_components/NavBar';
 
-export default function Layout() {
+export default function Layout({children}: {children: React.ReactNode}) {
   return (
-    <Flex
-      direction='row'
-      justifyContent='space-between'
-      alignItems='center'
-      padding='1rem'
-      position='absolute'
-    >
-      <Link href='/'>
-        <a>Home</a>
-      </Link>
-      <Link href='/strava'>
-        <a>Strava</a>
-      </Link>
-      <Link href='/login'>
-        <a>Login</a>
-      </Link>
-    </Flex>
-  );
+    <>
+    <NavBar/>
+    {children}
+    </>
+  )
 }

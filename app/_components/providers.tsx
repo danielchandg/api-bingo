@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { NextUIProvider } from '@nextui-org/react';
 import { Authenticator } from '@aws-amplify/ui-react';
 

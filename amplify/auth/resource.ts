@@ -8,12 +8,14 @@ import { defineAuth, secret } from "@aws-amplify/backend";
 export const auth = defineAuth({
   loginWith: {
     email: {
-      verificationEmailSubject: 'Welcome! Verify your email!',
+      verificationEmailSubject: 'Welcome to API Bingo',
       verificationEmailBody(createCode: () => string) {
         return `Welcome to API Bingo! Your verification code is ${createCode()}`
       },
       verificationEmailStyle: 'CODE',
     },
+    // https://docs.amplify.aws/nextjs/build-a-backend/auth/concepts/external-identity-providers/
+    // https://docs.amplify.aws/react/deploy-and-host/fullstack-branching/secrets-and-vars/#set-secrets
     externalProviders: {
       google: {
         clientId: secret('GOOGLE_CLIENT_ID'),
@@ -38,6 +40,8 @@ export const auth = defineAuth({
    * https://docs.amplify.aws/nextjs/build-a-backend/auth/modify-resources-with-cdk/#custom-attributes
    */
   userAttributes: {
+    // Note: If you want to establish a unique username, refer here:
+    // https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUsers.html
     preferredUsername: {
       mutable: true,
       required: false
