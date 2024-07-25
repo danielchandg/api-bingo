@@ -39,13 +39,13 @@ export async function updateProfilePicture(profilePicture: string) {
 
 export async function addConnectedApi(api: string) {
   api = api.toLowerCase();
-  const { profile: connectedApis } = await fetchUserAttributes();
+  const { connectedApis } = await fetchUserAttributes();
   if (connectedApis?.includes(api)) {
     throw new Error(`addConnectedApi: ${api} is already connected`);
   }
   const res = await updateUserAttribute({
     userAttribute: {
-      attributeKey: 'profile',
+      attributeKey: 'connectedApis',
       value: (connectedApis ? connectedApis + ' ' : '') + api
     }
   });
@@ -56,13 +56,13 @@ export async function addConnectedApi(api: string) {
 
 export async function removeConnectedApi(api: string) {
   api = api.toLowerCase();
-  const { profile: connectedApis } = await fetchUserAttributes();
+  const { connectedApis } = await fetchUserAttributes();
   if (!connectedApis || !connectedApis.includes(api)) {
     throw new Error(`removeConnectedApi: ${api} is not connected`);
   }
   const res = await updateUserAttribute({
     userAttribute: {
-      attributeKey: 'profile',
+      attributeKey: 'connectedApis',
       value: connectedApis.replace(api, '').replace('  ', ' ').trim()
     }
   });

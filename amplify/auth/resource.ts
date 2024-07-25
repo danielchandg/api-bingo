@@ -37,20 +37,9 @@ export const auth = defineAuth({
   },
   /**
    * https://docs.amplify.aws/nextjs/build-a-backend/auth/concepts/user-attributes/
-   * https://docs.amplify.aws/nextjs/build-a-backend/auth/modify-resources-with-cdk/#custom-attributes
+   * Note: Don't add things here - https://stackoverflow.com/a/62302382
    */
-  userAttributes: {
-    // Note: If you want to establish a unique username, refer here:
-    // https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUsers.html
-    preferredUsername: {
-      mutable: true,
-      required: false
-    },
-    profilePicture: {
-      mutable: true,
-      required: false
-    },
-  },
+  userAttributes: {},
   /**
    * https://docs.amplify.aws/nextjs/build-a-backend/auth/concepts/multi-factor-authentication/#configure-multi-factor-authentication
    * https://docs.amplify.aws/nextjs/build-a-backend/auth/concepts/multi-factor-authentication/#set-up-totp-for-a-user

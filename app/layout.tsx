@@ -28,7 +28,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body className={inter.className}>
         <Providers>
           <ConfigureAmplify />
-          <NavBar isSignedIn={false} />
+          {/* <NavBar isSignedIn={false} /> */}
           <main>{children}</main>
         </Providers>
       </body>
